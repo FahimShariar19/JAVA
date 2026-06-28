@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Tags Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #fdf6e3;
+    --accent: #e63946;
+    --gold: #f4a261;
+    --teal: #2a9d8f;
+    --soft: #f1faee;
+    --code-bg: #1e1e2e;
+    --code-text: #cdd6f4;
+    --tag-color: #89b4fa;
+    --attr-color: #a6e3a1;
+    --val-color: #f38ba8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Tiro Bangla', serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.8;
+    font-size: 17px;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 60px 40px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '</>';
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 200px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.04);
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  header .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  header h1 span { color: var(--gold); }
+  header p {
+    font-size: 18px;
+    opacity: 0.75;
+    max-width: 560px;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--teal);
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 12px 14px;
+    opacity: 0.8;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  nav a:hover { opacity: 1; border-bottom-color: var(--gold); background: rgba(255,255,255,0.1); }
+
+  /* MAIN */
+  main { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* SECTION */
+  .topic {
+    margin-bottom: 64px;
+    scroll-margin-top: 60px;
+  }
+
+  .topic-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--ink);
+  }
+  .topic-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+    min-width: 52px;
+  }
+  .topic h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .topic h2 code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    color: var(--teal);
+    background: rgba(42,157,143,0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* EXPLAIN BOX */
+  .explain {
+    background: var(--soft);
+    border-left: 5px solid var(--teal);
+    padding: 20px 24px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 20px;
+  }
+  .explain .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* ANALOGY */
+  .analogy {
+    background: #fff8e7;
+    border: 2px dashed var(--gold);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+  .analogy::before {
+    content: '💡 Analogy: ';
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  /* CODE BLOCK */
+  .code-block {
+    background: var(--code-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  }
+  .code-header {
+    background: #313244;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .code-dots { display: flex; gap: 6px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-r { background: #f38ba8; }
+  .dot-y { background: #f9e2af; }
+  .dot-g { background: #a6e3a1; }
+  .code-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #6c7086;
+    letter-spacing: 1px;
+  }
+  .copy-btn {
+    background: rgba(255,255,255,0.1);
+    color: #cdd6f4;
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    letter-spacing: 1px;
+  }
+  .copy-btn:hover { background: rgba(255,255,255,0.2); }
+  pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 20px 22px;
+    color: var(--code-text);
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .t { color: var(--tag-color); }
+  .a { color: var(--attr-color); }
+  .v { color: var(--val-color); }
+  .cm { color: #6c7086; font-style: italic; }
+  .tx { color: #cdd6f4; }
+
+  /* LIVE PREVIEW */
+  .preview-box {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .preview-header {
+    background: #f5f5f5;
+    padding: 8px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .preview-header::before { content: '▶'; color: var(--teal); }
+  .preview-content {
+    padding: 24px 28px;
+    background: white;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  /* TABLE DEMO */
+  .demo-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 15px;
+    margin-top: 8px;
+  }
+  .demo-table th {
+    background: var(--ink);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+  }
+  .demo-table td {
+    border: 1px solid #ddd;
+    padding: 9px 14px;
+  }
+  .demo-table tr:nth-child(even) td { background: #f9f9f9; }
+
+  /* CHEATSHEET */
+  .cheat {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-top: 64px;
+  }
+  .cheat h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: var(--gold);
+  }
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .cheat-item {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+  .cheat-item .tag { color: var(--tag-color); font-size: 15px; font-weight: 700; }
+  .cheat-item .desc { color: rgba(255,255,255,0.55); font-size: 12px; margin-top: 4px; font-family: 'Tiro Bangla', serif; }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--accent), transparent);
+    margin: 8px 0 24px;
+  }
+
+  /* ATTRIBUTE TABLE */
+  .attr-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .attr-table th {
+    background: var(--teal);
+    color: white;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  .attr-table td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    background: white;
+    font-family: 'Tiro Bangla', serif;
+  }
+  .attr-table td:first-child {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--teal);
+    background: #f0faf9;
+    font-weight: 700;
+  }
+
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 28px;
+    font-size: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">HTML Masterclass</div>
+  <h1>HTML Tags<br><span>সম্পূর্ণ গাইড</span></h1>
+  <p>প্রতিটি tag গভীরভাবে বুঝুন — example ও analogy সহ, যাতে অন্যকে সহজে শেখাতে পারেন।</p>
+</header>
+
+<nav>
+  <a href="#bold-italic">Bold/Italic</a>
+  <a href="#underline">Underline</a>
+  <a href="#sub-sup">Sub/Sup</a>
+  <a href="#image">Image</a>
+  <a href="#hyperlink">Hyperlink</a>
+  <a href="#lists">Lists</a>
+  <a href="#table">Table</a>
+  <a href="#cheatsheet">Cheatsheet</a>
+</nav>
+
+<main>
+
+<!-- ===== 1. BOLD & ITALIC ===== -->
+<section class="topic" id="bold-italic">
+  <div class="topic-header">
+    <div class="topic-num">01</div>
+    <div>
+      <h2>Bold &amp; Italic — <code>&lt;b&gt;</code> <code>&lt;strong&gt;</code> <code>&lt;i&gt;</code> <code>&lt;em&gt;</code></h2>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="explain">
+    <div class="label">কী করে?</div>
+    <p><strong>Bold</strong> মানে লেখাকে মোটা করা। <strong>Italic</strong> মানে লেখাকে বাঁকানো। এগুলো দিয়ে আমরা গুরুত্বপূর্ণ শব্দ হাইলাইট করি।</p>
+  </div>
+
+  <div class="analogy">
+    বইয়ে যেমন গুরুত্বপূর্ণ কথা underline বা bold করা থাকে — HTML-এ সেটাই করি <code>&lt;strong&gt;</code> দিয়ে। আর বইয়ে বিদেশী শব্দ বা বিশেষ term italic হয় — সেটাই <code>&lt;em&gt;</code> দিয়ে।
+  </div>
+
+  <div class="explain">
+    <div class="label">⚠️ পার্থক্য জানো</div>
+    <p><code>&lt;b&gt;</code> শুধু দেখতে bold করে (visual only)। কিন্তু <code>&lt;strong&gt;</code> দিয়ে browser-কে বলি "এটা semantically important" — screen reader-রাও বোঝে।<br>একইভাবে <code>&lt;i&gt;</code> শুধু visual italic, কিন্তু <code>&lt;em&gt;</code> মানে "emphasis" বা জোর দেওয়া।</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+      <span class="code-label">HTML</span>
+      <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><span class="cm">&lt;!-- Bold --&gt;</span>
+<span class="t">&lt;b&gt;</span><span class="tx">এটা শুধু bold দেখাবে</span><span class="t">&lt;/b&gt;</span>
+<span class="t">&lt;strong&gt;</span><span class="tx">এটা bold + গুরুত্বপূর্ণ</span><span class="t">&lt;/strong&gt;</span>
+
+<span class="cm">&lt;!-- Italic --&gt;</span>
+<span class="t">&lt;i&gt;</span><span class="tx">এটা শুধু italic দেখাবে</span><span class="t">&lt;/i&gt;</span>
+<span class="t">&lt;em&gt;</span><span class="tx">এটা italic + emphasized</span><span class="t">&lt;/em&gt;</span>
+
+<span class="cm">&lt;!-- একসাথেও ব্যবহার করা যায় --&gt;</span>
+<span class="t">&lt;strong&gt;&lt;em&gt;</span><span class="tx">Bold এবং Italic একসাথে!</span><span class="t">&lt;/em&gt;&lt;/strong&gt;</span></pre>
+  </div>
+
+  <div class="preview-box">
+    <div class="preview-header">LIVE OUTPUT</div>
+    <div class="preview-content">
+      <b>এটা শুধু bold দেখাবে</b><br>
+      <strong>এটা bold + গুরুত্বপূর্ণ</strong><br>
+      <i>এটা শুধু italic দেখাবে</i><br>
+      <em>এটা italic + emphasized</em><br>
+      <strong><em>Bold এবং Italic একসাথে!</em></strong>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. UNDERLINE ===== -->
+<section class="topic" id="underline">
+  <div class="topic-header">
+    <div class="topic-num">02</div>
+    <div><h2>Underline — <code>&lt;u&gt;</code></h2></div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="explain">
+    <div class="label">কী করে?</div>
+    <p>লেখার নিচে একটা দাগ টেনে দেয়। সাধারণত spelling error বা proper noun বোঝাতে ব্যবহার হয়।</p>
+  </div>
+
+  <div class="analogy">
+    পরীক্ষার খাতায় উত্তরের নিচে দাগ টানলে যেরকম দেখায় — HTML-এ <code>&lt;u&gt;</code> ঠিক সেটাই করে।
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+      <span class="code-label">HTML</span>
+      <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><span class="t">&lt;p&gt;</span><span class="tx">আমার প্রিয় বিষয় হলো </span><span class="t">&lt;u&gt;</span><span class="tx">HTML</span><span class="t">&lt;/u&gt;</span><span class="tx">।</span><span class="t">&lt;/p&gt;</span>
+
+<span class="t">&lt;p&gt;</span><span class="tx">এই শব্দটার বানান ভুল: </span><span class="t">&lt;u&gt;</span><span class="tx">recieve</span><span class="t">&lt;/u&gt;</span><span class="t">&lt;/p&gt;</span></pre>
+  </div>
+
+  <div class="preview-box">
+    <div class="preview-header">LIVE OUTPUT</div>
+    <div class="preview-content">
+      <p>আমার প্রিয় বিষয় হলো <u>HTML</u>।</p>
+      <p>এই শব্দটার বানান ভুল: <u>recieve</u></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. SUBSCRIPT & SUPERSCRIPT ===== -->
+<section class="topic" id="sub-sup">
+  <div class="topic-header">
+    <div class="topic-num">03</div>
+    <div><h2>Subscript &amp; Superscript — <code>&lt;sub&gt;</code> <code>&lt;sup&gt;</code></h2></div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="explain">
+    <div class="label">কী করে?</div>
+    <p><strong>Subscript (<code>&lt;sub&gt;</code>)</strong>: লেখাকে নিচে ছোট করে — যেমন রসায়নের সূত্রে H₂O।<br>
+    <strong>Superscript (<code>&lt;sup&gt;</code>)</strong>: লেখাকে উপরে ছোট করে — যেমন গণিতে x²।</p>
+  </div>
+
+  <div class="analogy">
+    বিজ্ঞান বইয়ে H₂O লেখার সময় "2" টা ছোট করে নিচে থাকে — সেটাই subscript। আর 10² লেখার সময় "2" উপরে ছোট থাকে — সেটাই superscript।
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+      <span class="code-label">HTML</span>
+      <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><span class="cm">&lt;!-- Subscript - Chemistry --&gt;</span>
+<span class="t">&lt;p&gt;</span><span class="tx">পানির সূত্র: H</span><span class="t">&lt;sub&gt;</span><span class="tx">2</span><span class="t">&lt;/sub&gt;</span><span class="tx">O</span><span class="t">&lt;/p&gt;</span>
+<span class="t">&lt;p&gt;</span><span class="tx">CO</span><span class="t">&lt;sub&gt;</span><span class="tx">2</span><span class="t">&lt;/sub&gt;</span><span class="tx"> = কার্বন ডাই অক্সাইড</span><span class="t">&lt;/p&gt;</span>
+
+<span class="cm">&lt;!-- Superscript - Math --&gt;</span>
+<span class="t">&lt;p&gt;</span><span class="tx">2 এর ঘন = 2</span><span class="t">&lt;sup&gt;</span><span class="tx">3</span><span class="t">&lt;/sup&gt;</span><span class="tx"> = 8</span><span class="t">&lt;/p&gt;</span>
+<span class="t">&lt;p&gt;</span><span class="tx">এটা 10</span><span class="t">&lt;sup&gt;</span><span class="tx">th</span><span class="t">&lt;/sup&gt;</span><span class="tx"> anniversary!</span><span class="t">&lt;/p&gt;</span></pre>
+  </div>
+
+  <div class="preview-box">
+    <div class="preview-header">LIVE OUTPUT</div>
+    <div class="preview-content">
+      <p>পানির সূত্র: H<sub>2</sub>O</p>
+      <p>CO<sub>2</sub> = কার্বন ডাই অক্সাইড</p>
+      <p>2 এর ঘন = 2<sup>3</sup> = 8</p>
+      <p>এটা 10<sup>th</sup> anniversary!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. IMAGE ===== -->
+<section class="topic" id="image">
+  <div class="topic-header">
+    <div class="topic-num">04</div>
+    <div><h2>Image — <code>&lt;img&gt;</code></h2></div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="explain">
+    <div class="label">কী করে?</div>
+    <p>Webpage-এ ছবি দেখায়। এটা একটা <strong>self-closing tag</strong> — মানে এর কোনো closing tag নেই (<code>&lt;/img&gt;</code> লাগে না)।</p>
+  </div>
+
+  <div class="analogy">
+    যেমন একটা ফ্রেমে ছবি লাগানো হয় — <code>&lt;img&gt;</code> ট্যাগটা সেই ফ্রেম, আর <code>src</code> attribute হলো ছবির ঠিকানা।
+  </div>
+
+  <table class="attr-table">
+    <tr><th>Attribute</th><th>কী করে</th></tr>
+    <tr><td>src</td><td>ছবির ঠিকানা (URL বা file path)</td></tr>
+    <tr><td>alt</td><td>ছবি না দেখালে এই লেখা দেখাবে (accessibility-র জন্য জরুরি)</td></tr>
+    <tr><td>width</td><td>ছবির প্রস্থ (pixel বা %)</td></tr>
+    <tr><td>height</td><td>ছবির উচ্চতা (pixel বা %)</td></tr>
+  </table>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+      <span class="code-label">HTML</span>
+      <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><span class="cm">&lt;!-- Basic image --&gt;</span>
+<span class="t">&lt;img</span> <span class="a">src</span>=<span class="v">"cat.jpg"</span> <span class="a">alt</span>=<span class="v">"একটা বিড়ালের ছবি"</span><span class="t">&gt;</span>
+
+<span class="cm">&lt;!-- Size দিয়ে --&gt;</span>
+<span class="t">&lt;img</span> <span class="a">src</span>=<span class="v">"logo.png"</span> <span class="a">alt</span>=<span class="v">"Company Logo"</span>
+     <span class="a">width</span>=<span class="v">"200"</span> <span class="a">height</span>=<span class="v">"100"</span><span class="t">&gt;</span>
+
+<span class="cm">&lt;!-- Online URL থেকে ছবি --&gt;</span>
+<span class="t">&lt;img</span>
+  <span class="a">src</span>=<span class="v">"https://picsum.photos/300/150"</span>
+  <span class="a">alt</span>=<span class="v">"Random photo"</span>
+  <span class="a">width</span>=<span class="v">"300"</span>
+<span class="t">&gt;</span></pre>
+  </div>
+
+  <div class="preview-box">
+    <div class="preview-header">LIVE OUTPUT</div>
+    <div class="preview-content">
+      <img src="https://picsum.photos/300/120?grayscale" alt="Random photo" width="300" style="border-radius:6px;display:block;margin-bottom:8px">
+      <small style="color:#888; font-family:monospace;">↑ Online URL থেকে লোড হওয়া ছবি</small>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. HYPERLINK ===== -->
+<section class="topic" id="hyperlink">
+  <div class="topic-header">
+    <div class="topic-num">05</div>
+    <div><h2>Hyperlink — <code>&lt;a&gt;</code></h2></div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="explain">
+    <div class="label">কী করে?</div>
+    <p>একটা page থেকে অন্য page-এ যাওয়ার link তৈরি করে। <code>&lt;a&gt;</code> মানে "anchor" — মানে কোথাও "নোঙর" ফেলা।</p>
+  </div>
+
+  <div class="analogy">
+    যেমন একটা বইয়ে "পৃষ্ঠা ৪৫ দেখুন" লেখা থাকে — সেটা একটা reference। HTML-এ hyperlink ঠিক তেমনই, কিন্তু click করলেই সেখানে চলে যাবে!
+  </div>
+
+  <table class="attr-table">
+    <tr><th>Attribute</th><th>কী করে</th></tr>
+    <tr><td>href</td><td>কোথায় যাবে — URL বা file path</td></tr>
+    <tr><td>target="_blank"</td><td>নতুন tab-এ খুলবে</td></tr>
+    <tr><td>target="_self"</td><td>একই tab-এ খুলবে (default)</td></tr>
+    <tr><td>href="mailto:..."</td><td>Email পাঠানোর link</td></tr>
+    <tr><td>href="tel:..."</td><td>Phone call link (mobile-এ)</td></tr>
+  </table>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+      <span class="code-label">HTML</span>
+      <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><span class="cm">&lt;!-- সাধারণ link --&gt;</span>
+<span class="t">&lt;a</span> <span class="a">href</span>=<span class="v">"https://google.com"</span><span class="t">&gt;</span><span class="tx">Google-এ যাও</span><span class="t">&lt;/a&gt;</span>
+
+<span class="cm">&lt;!-- নতুন tab-এ খুলবে --&gt;</span>
+<span class="t">&lt;a</span> <span class="a">href</span>=<span class="v">"https://youtube.com"</span> <span class="a">target</span>=<span class="v">"_blank"</span><span class="t">&gt;</span>
+  <span class="tx">YouTube (নতুন tab)</span>
+<span class="t">&lt;/a&gt;</span>
+
+<span class="cm">&lt;!-- Email link --&gt;</span>
+<span class="t">&lt;a</span> <span class="a">href</span>=<span class="v">"mailto:info@example.com"</span><span class="t">&gt;</span>
+  <span class="tx">আমাকে email করুন</span>
+<span class="t">&lt;/a&gt;</span>
+
+<span class="cm">&lt;!-- Phone link --&gt;</span>
+<span class="t">&lt;a</span> <span class="a">href</span>=<span class="v">"tel:+8801700000000"</span><span class="t">&gt;</span>
+  <span class="tx">Call করুন</span>
+<span class="t">&lt;/a&gt;</span>
+
+<span class="cm">&lt;!-- Image-এ link দেওয়া যায়! --&gt;</span>
+<span class="t">&lt;a</span> <span class="a">href</span>=<span class="v">"https://google.com"</span><span class="t">&gt;</span>
+  <span class="t">&lt;img</span> <span class="a">src</span>=<span class="v">"logo.png"</span> <span class="a">alt</span>=<span class="v">"Logo"</span><span class="t">&gt;</span>
+<span class="t">&lt;/a&gt;</span></pre>
+  </div>
+
+  <div class="preview-box">
+    <div class="preview-header">LIVE OUTPUT</div>
+    <div class="preview-content">
+      <a href="https://google.com" target="_blank">Google-এ যাও</a><br><br>
+      <a href="https://youtube.com" target="_blank">YouTube (নতুন tab)</a><br><br>
+      <a href="mailto:info@example.com">আমাকে email করুন</a><br><br>
+      <a href="tel:+8801700000000">Call করুন</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6. LISTS ===== -->
+<section class="topic" id="lists">
+  <div class="topic-header">
+    <div class="topic-num">06</div>
+    <div><h2>Lists — <code>&lt;ul&gt;</code> <code>&lt;ol&gt;</code> <code>&lt;li&gt;</code></h2></div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="explain">
+    <div class="label">কী করে?</div>
+    <p><strong>Unordered List (<code>&lt;ul&gt;</code>)</strong>: bullet point সহ তালিকা — যেখানে ক্রম গুরুত্বপূর্ণ না।<br>
+    <strong>Ordered List (<code>&lt;ol&gt;</code>)</strong>: নম্বর সহ তালিকা — যেখানে ক্রম গুরুত্বপূর্ণ।<br>
+    <strong>List Item (<code>&lt;li&gt;</code>)</strong>: তালিকার প্রতিটি আইটেম।</p>
+  </div>
+
+  <div class="analogy">
+    বাজারের list (আলু, পেঁয়াজ, রসুন) — এখানে কোনটা আগে কিনবে সেটা গুরুত্বপূর্ণ না, তাই <code>&lt;ul&gt;</code>। কিন্তু রান্নার ধাপ (প্রথমে তেল গরম করো, তারপর পেঁয়াজ দাও...) — এখানে ক্রম জরুরি, তাই <code>&lt;ol&gt;</code>।
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+      <span class="code-label">HTML</span>
+      <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><span class="cm">&lt;!-- Unordered List (bullet points) --&gt;</span>
+<span class="t">&lt;ul&gt;</span>
+  <span class="t">&lt;li&gt;</span><span class="tx">আলু</span><span class="t">&lt;/li&gt;</span>
+  <span class="t">&lt;li&gt;</span><span class="tx">পেঁয়াজ</span><span class="t">&lt;/li&gt;</span>
+  <span class="t">&lt;li&gt;</span><span class="tx">রসুন</span><span class="t">&lt;/li&gt;</span>
+<span class="t">&lt;/ul&gt;</span>
+
+<span class="cm">&lt;!-- Ordered List (numbered) --&gt;</span>
+<span class="t">&lt;ol&gt;</span>
+  <span class="t">&lt;li&gt;</span><span class="tx">তেল গরম করো</span><span class="t">&lt;/li&gt;</span>
+  <span class="t">&lt;li&gt;</span><span class="tx">পেঁয়াজ দাও</span><span class="t">&lt;/li&gt;</span>
+  <span class="t">&lt;li&gt;</span><span class="tx">মশলা দিয়ে রান্না করো</span><span class="t">&lt;/li&gt;</span>
+<span class="t">&lt;/ol&gt;</span>
+
+<span class="cm">&lt;!-- Nested List (list-এর ভেতরে list) --&gt;</span>
+<span class="t">&lt;ul&gt;</span>
+  <span class="t">&lt;li&gt;</span><span class="tx">ফল</span>
+    <span class="t">&lt;ul&gt;</span>
+      <span class="t">&lt;li&gt;</span><span class="tx">আম</span><span class="t">&lt;/li&gt;</span>
+      <span class="t">&lt;li&gt;</span><span class="tx">কলা</span><span class="t">&lt;/li&gt;</span>
+    <span class="t">&lt;/ul&gt;</span>
+  <span class="t">&lt;/li&gt;</span>
+  <span class="t">&lt;li&gt;</span><span class="tx">সবজি</span><span class="t">&lt;/li&gt;</span>
+<span class="t">&lt;/ul&gt;</span></pre>
+  </div>
+
+  <div class="preview-box">
+    <div class="preview-header">LIVE OUTPUT</div>
+    <div class="preview-content" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:start">
+      <div>
+        <strong>Unordered:</strong>
+        <ul><li>আলু</li><li>পেঁয়াজ</li><li>রসুন</li></ul>
+      </div>
+      <div>
+        <strong>Ordered:</strong>
+        <ol><li>তেল গরম করো</li><li>পেঁয়াজ দাও</li><li>রান্না করো</li></ol>
+      </div>
+      <div>
+        <strong>Nested:</strong>
+        <ul><li>ফল<ul><li>আম</li><li>কলা</li></ul></li><li>সবজি</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. TABLE ===== -->
+<section class="topic" id="table">
+  <div class="topic-header">
+    <div class="topic-num">07</div>
+    <div><h2>Table — <code>&lt;table&gt;</code> এবং সব attributes</h2></div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="explain">
+    <div class="label">Table-এর Structure</div>
+    <p>
+      <code>&lt;table&gt;</code> — পুরো টেবিল<br>
+      <code>&lt;tr&gt;</code> — Table Row (একটা সারি)<br>
+      <code>&lt;th&gt;</code> — Table Header (heading cell — bold হয়)<br>
+      <code>&lt;td&gt;</code> — Table Data (সাধারণ cell)
+    </p>
+  </div>
+
+  <div class="analogy">
+    একটা Excel spreadsheet কল্পনা করো। প্রতিটা row হলো <code>&lt;tr&gt;</code>, প্রতিটা cell হলো <code>&lt;td&gt;</code>, আর header row-এর cell গুলো <code>&lt;th&gt;</code>।
+  </div>
+
+  <!-- Basic Table -->
+  <div class="explain" style="margin-top:24px">
+    <div class="label">7.1 — Basic Table</div>
+    <p>সবচেয়ে সাধারণ টেবিল — row এবং column।</p>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+      <span class="code-label">Basic Table</span>
+      <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><span class="t">&lt;table</span> <span class="a">border</span>=<span class="v">"1"</span><span class="t">&gt;</span>
+  <span class="t">&lt;tr&gt;</span>
+    <span class="t">&lt;th&gt;</span><span class="tx">নাম</span><span class="t">&lt;/th&gt;</span>
+    <span class="t">&lt;th&gt;</span><span class="tx">বয়স</span><span class="t">&lt;/th&gt;</span>
+    <span class="t">&lt;th&gt;</span><span class="tx">শহর</span><span class="t">&lt;/th&gt;</span>
+  <span class="t">&lt;/tr&gt;</span>
+  <span class="t">&lt;tr&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">রাহেলা</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">22</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">ঢাকা</span><span class="t">&lt;/td&gt;</span>
+  <span class="t">&lt;/tr&gt;</span>
+  <span class="t">&lt;tr&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">করিম</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">25</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">চট্টগ্রাম</span><span class="t">&lt;/td&gt;</span>
+  <span class="t">&lt;/tr&gt;</span>
+<span class="t">&lt;/table&gt;</span></pre>
+  </div>
+
+  <div class="preview-box">
+    <div class="preview-header">LIVE OUTPUT — Basic Table</div>
+    <div class="preview-content">
+      <table class="demo-table">
+        <tr><th>নাম</th><th>বয়স</th><th>শহর</th></tr>
+        <tr><td>রাহেলা</td><td>22</td><td>ঢাকা</td></tr>
+        <tr><td>করিম</td><td>25</td><td>চট্টগ্রাম</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- COLSPAN -->
+  <div class="explain" style="margin-top:32px">
+    <div class="label">7.2 — colspan (একাধিক column জুড়ে দেওয়া)</div>
+    <p><code>colspan="2"</code> মানে এই cell টি 2টি column জুড়ে বিস্তৃত হবে।</p>
+  </div>
+
+  <div class="analogy">
+    যেমন একটা ঘরের দেওয়াল ভেঙে দুটো ঘর এক করা — colspan সেটাই করে, দুটো cell কে জোড়া লাগায় পাশাপাশি।
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+      <span class="code-label">colspan Example</span>
+      <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><span class="t">&lt;table</span> <span class="a">border</span>=<span class="v">"1"</span><span class="t">&gt;</span>
+  <span class="t">&lt;tr&gt;</span>
+    <span class="cm">&lt;!-- এই th দুটো column দখল করবে --&gt;</span>
+    <span class="t">&lt;th</span> <span class="a">colspan</span>=<span class="v">"2"</span><span class="t">&gt;</span><span class="tx">ব্যক্তিগত তথ্য</span><span class="t">&lt;/th&gt;</span>
+    <span class="t">&lt;th&gt;</span><span class="tx">নম্বর</span><span class="t">&lt;/th&gt;</span>
+  <span class="t">&lt;/tr&gt;</span>
+  <span class="t">&lt;tr&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">নাম</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">বয়স</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">ফোন</span><span class="t">&lt;/td&gt;</span>
+  <span class="t">&lt;/tr&gt;</span>
+  <span class="t">&lt;tr&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">আরিফ</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">20</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">01700000</span><span class="t">&lt;/td&gt;</span>
+  <span class="t">&lt;/tr&gt;</span>
+<span class="t">&lt;/table&gt;</span></pre>
+  </div>
+
+  <div class="preview-box">
+    <div class="preview-header">LIVE OUTPUT — colspan</div>
+    <div class="preview-content">
+      <table class="demo-table">
+        <tr><th colspan="2">ব্যক্তিগত তথ্য</th><th>নম্বর</th></tr>
+        <tr><td>নাম</td><td>বয়স</td><td>ফোন</td></tr>
+        <tr><td>আরিফ</td><td>20</td><td>01700000</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ROWSPAN -->
+  <div class="explain" style="margin-top:32px">
+    <div class="label">7.3 — rowspan (একাধিক row জুড়ে দেওয়া)</div>
+    <p><code>rowspan="2"</code> মানে এই cell টি 2টি row জুড়ে নিচে বিস্তৃত হবে।</p>
+  </div>
+
+  <div class="analogy">
+    উপরে-নিচে দুটো ঘর ভেঙে একটা লম্বা ঘর বানানো — rowspan সেটাই করে, উপর-নিচে দুটো cell জোড়া লাগায়।
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+      <span class="code-label">rowspan Example</span>
+      <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><span class="t">&lt;table</span> <span class="a">border</span>=<span class="v">"1"</span><span class="t">&gt;</span>
+  <span class="t">&lt;tr&gt;</span>
+    <span class="cm">&lt;!-- এই td দুটো row দখল করবে --&gt;</span>
+    <span class="t">&lt;td</span> <span class="a">rowspan</span>=<span class="v">"2"</span><span class="t">&gt;</span><span class="tx">বিজ্ঞান</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">পদার্থবিদ্যা</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">৮৫</span><span class="t">&lt;/td&gt;</span>
+  <span class="t">&lt;/tr&gt;</span>
+  <span class="t">&lt;tr&gt;</span>
+    <span class="cm">&lt;!-- এখানে প্রথম td দরকার নেই, rowspan নিয়েছে --&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">রসায়ন</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">৯০</span><span class="t">&lt;/td&gt;</span>
+  <span class="t">&lt;/tr&gt;</span>
+  <span class="t">&lt;tr&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">গণিত</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">বীজগণিত</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td&gt;</span><span class="tx">৯৫</span><span class="t">&lt;/td&gt;</span>
+  <span class="t">&lt;/tr&gt;</span>
+<span class="t">&lt;/table&gt;</span></pre>
+  </div>
+
+  <div class="preview-box">
+    <div class="preview-header">LIVE OUTPUT — rowspan</div>
+    <div class="preview-content">
+      <table class="demo-table">
+        <tr><th>বিভাগ</th><th>বিষয়</th><th>নম্বর</th></tr>
+        <tr><td rowspan="2">বিজ্ঞান</td><td>পদার্থবিদ্যা</td><td>৮৫</td></tr>
+        <tr><td>রসায়ন</td><td>৯০</td></tr>
+        <tr><td>গণিত</td><td>বীজগণিত</td><td>৯৫</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- CELLPADDING & ALIGN -->
+  <div class="explain" style="margin-top:32px">
+    <div class="label">7.4 — cellpadding এবং align</div>
+    <p><code>cellpadding</code>: cell-এর ভেতরে content-এর চারপাশে কতটুকু জায়গা থাকবে (padding)।<br>
+    <code>align</code>: text কোন দিকে থাকবে — left, center, right।</p>
+  </div>
+
+  <div class="analogy">
+    <code>cellpadding</code> হলো একটা বাক্সের ভেতরে জিনিসের চারপাশের foam। আর <code>align</code> হলো বাক্সের ভেতরে জিনিসটা বাম দিকে, মাঝে, না ডান দিকে রাখব।
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+      <span class="code-label">cellpadding + align</span>
+      <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    </div>
+    <pre><span class="t">&lt;table</span> <span class="a">border</span>=<span class="v">"1"</span> <span class="a">cellpadding</span>=<span class="v">"12"</span> <span class="a">align</span>=<span class="v">"center"</span><span class="t">&gt;</span>
+  <span class="t">&lt;tr&gt;</span>
+    <span class="t">&lt;th</span> <span class="a">align</span>=<span class="v">"left"</span><span class="t">&gt;</span><span class="tx">পণ্য</span><span class="t">&lt;/th&gt;</span>
+    <span class="t">&lt;th</span> <span class="a">align</span>=<span class="v">"center"</span><span class="t">&gt;</span><span class="tx">পরিমাণ</span><span class="t">&lt;/th&gt;</span>
+    <span class="t">&lt;th</span> <span class="a">align</span>=<span class="v">"right"</span><span class="t">&gt;</span><span class="tx">দাম (৳)</span><span class="t">&lt;/th&gt;</span>
+  <span class="t">&lt;/tr&gt;</span>
+  <span class="t">&lt;tr&gt;</span>
+    <span class="t">&lt;td</span> <span class="a">align</span>=<span class="v">"left"</span><span class="t">&gt;</span><span class="tx">চাল</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td</span> <span class="a">align</span>=<span class="v">"center"</span><span class="t">&gt;</span><span class="tx">5 kg</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td</span> <span class="a">align</span>=<span class="v">"right"</span><span class="t">&gt;</span><span class="tx">350</span><span class="t">&lt;/td&gt;</span>
+  <span class="t">&lt;/tr&gt;</span>
+  <span class="t">&lt;tr&gt;</span>
+    <span class="t">&lt;td</span> <span class="a">align</span>=<span class="v">"left"</span><span class="t">&gt;</span><span class="tx">ডাল</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td</span> <span class="a">align</span>=<span class="v">"center"</span><span class="t">&gt;</span><span class="tx">2 kg</span><span class="t">&lt;/td&gt;</span>
+    <span class="t">&lt;td</span> <span class="a">align</span>=<span class="v">"right"</span><span class="t">&gt;</span><span class="tx">180</span><span class="t">&lt;/td&gt;</span>
+  <span class="t">&lt;/tr&gt;</span>
+<span class="t">&lt;/table&gt;</span></pre>
+  </div>
+
+  <div class="preview-box">
+    <div class="preview-header">LIVE OUTPUT — cellpadding + align</div>
+    <div class="preview-content">
+      <table style="border-collapse:collapse; width:100%; font-family:sans-serif; font-size:15px;">
+        <tr>
+          <th style="border:1px solid #ccc; padding:12px; text-align:left; background:#1a1a2e; color:white;">পণ্য</th>
+          <th style="border:1px solid #ccc; padding:12px; text-align:center; background:#1a1a2e; color:white;">পরিমাণ</th>
+          <th style="border:1px solid #ccc; padding:12px; text-align:right; background:#1a1a2e; color:white;">দাম (৳)</th>
+        </tr>
+        <tr>
+          <td style="border:1px solid #ccc; padding:12px; text-align:left;">চাল</td>
+          <td style="border:1px solid #ccc; padding:12px; text-align:center;">5 kg</td>
+          <td style="border:1px solid #ccc; padding:12px; text-align:right;">350</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #ccc; padding:12px; text-align:left; background:#f9f9f9;">ডাল</td>
+          <td style="border:1px solid #ccc; padding:12px; text-align:center; background:#f9f9f9;">2 kg</td>
+          <td style="border:1px solid #ccc; padding:12px; text-align:right; background:#f9f9f9;">180</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CHEATSHEET ===== -->
+<div class="cheat" id="cheatsheet">
+  <h2>📋 Quick Cheatsheet</h2>
+  <div class="cheat-grid">
+    <div class="cheat-item"><div class="tag">&lt;b&gt;</div><div class="desc">Bold (visual only)</div></div>
+    <div class="cheat-item"><div class="tag">&lt;strong&gt;</div><div class="desc">Bold + Semantic</div></div>
+    <div class="cheat-item"><div class="tag">&lt;i&gt;</div><div class="desc">Italic (visual only)</div></div>
+    <div class="cheat-item"><div class="tag">&lt;em&gt;</div><div class="desc">Italic + Emphasis</div></div>
+    <div class="cheat-item"><div class="tag">&lt;u&gt;</div><div class="desc">Underline</div></div>
+    <div class="cheat-item"><div class="tag">&lt;sub&gt;</div><div class="desc">Subscript (H₂O)</div></div>
+    <div class="cheat-item"><div class="tag">&lt;sup&gt;</div><div class="desc">Superscript (x²)</div></div>
+    <div class="cheat-item"><div class="tag">&lt;img&gt;</div><div class="desc">Image (self-closing)</div></div>
+    <div class="cheat-item"><div class="tag">&lt;a&gt;</div><div class="desc">Hyperlink (Anchor)</div></div>
+    <div class="cheat-item"><div class="tag">&lt;ul&gt;</div><div class="desc">Unordered List</div></div>
+    <div class="cheat-item"><div class="tag">&lt;ol&gt;</div><div class="desc">Ordered List</div></div>
+    <div class="cheat-item"><div class="tag">&lt;li&gt;</div><div class="desc">List Item</div></div>
+    <div class="cheat-item"><div class="tag">&lt;table&gt;</div><div class="desc">Table</div></div>
+    <div class="cheat-item"><div class="tag">&lt;tr&gt;</div><div class="desc">Table Row</div></div>
+    <div class="cheat-item"><div class="tag">&lt;th&gt;</div><div class="desc">Table Header</div></div>
+    <div class="cheat-item"><div class="tag">&lt;td&gt;</div><div class="desc">Table Data Cell</div></div>
+    <div class="cheat-item"><div class="tag">colspan</div><div class="desc">Merge columns →</div></div>
+    <div class="cheat-item"><div class="tag">rowspan</div><div class="desc">Merge rows ↓</div></div>
+    <div class="cheat-item"><div class="tag">cellpadding</div><div class="desc">Cell inner spacing</div></div>
+    <div class="cheat-item"><div class="tag">align</div><div class="desc">Text alignment</div></div>
+  </div>
+</div>
+
+</main>
+
+<footer>Made with ❤️ for learners — HTML Tags Masterclass</footer>
+
+<script>
+function copyCode(btn) {
+  const pre = btn.closest('.code-block').querySelector('pre');
+  const text = pre.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ copied!';
+    btn.style.color = '#a6e3a1';
+    setTimeout(() => { btn.textContent = 'copy'; btn.style.color = ''; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
