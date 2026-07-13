@@ -23,6 +23,10 @@ This repository highlights practical implementations of key Java fundamentals:
 - **Exception Handling & I/O:** File operations and robust error handling techniques.
 
 ---
+### Execution Steps
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/FahimShariar19/JAVA.git
 
 ## 🚀 Getting Started & How to Run
 
@@ -45,12 +49,10 @@ To run any Java file from this repository on your local machine, follow these st
    ```bash
    java FileName
    ```
-### Execution Steps
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/FahimShariar19/JAVA.git
+
 
 👨‍💻 Author
+
 Fahim Shariar
 
 Computer & Communication Engineering (CCE) Student
