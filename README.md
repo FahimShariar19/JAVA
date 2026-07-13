@@ -12,6 +12,22 @@ Here is a quick breakdown of what you'll find in this repo:
 - 📂 **`Cover-page/`**: Standard report cover pages and submission templates formatted for academic presentation.
 
 ---
+## 📌 Lab Work Index
+
+Below is the list of lab experiments covered in this course:
+
+| Experiment No. | Submission Date | Name of Lab / Topic Covered |
+| :---: | :---: | :--- |
+| **01** | 25/02/2026 | Demonstration of Java Basics |
+| **02** | 01/04/2026 | Demonstration of Control Statements & Input Handling |
+| **03** | 01/04/2026 | Demonstration of Loops in Java (`for`, `while`, `do-while`) & Array Implementation |
+| **04** | 01/04/2026 | Understanding Class and Object (`main()` within a Single Class, Constructor Method) |
+| **05** | 08/04/2026 | Understanding Class and Object (`main()` Outside the Class) |
+| **06** | 08/04/2026 | Demonstration of Inheritance (Multilevel & Hierarchical) |
+| **07** | 06/05/2026 | Demonstration of Polymorphism Using Method Overloading |
+| **08** | 13/05/2026 | Demonstration of Polymorphism Using Method Overriding |
+| **09** | 20/05/2026 | Demonstration of Encapsulation |
+| **10** | 17/06/2026 | Demonstration of Abstraction & Interfaces |
 
 ## 🛠️ Core Concepts Covered
 
