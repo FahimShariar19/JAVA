@@ -34,7 +34,7 @@ Make sure you have the **Java Development Kit (JDK 17 or higher)** installed on 
 ### Execution
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-username/JAVA.git](https://github.com/your-username/JAVA.git)
+   git clone [https://github.com/your-username/JAVA.git](https://github.com/FahimShariar19/JAVA.git)
 
 
    
@@ -46,3 +46,5 @@ Fahim Shariar
 Computer & Communication Engineering (CCE) Student
 
 Passionate about Full-Stack Web Development, Java Architecture & Systems Design.
+
+[Fahim Shariar](https://github.com/FahimShariar19)
