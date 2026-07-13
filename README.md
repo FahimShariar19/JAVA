@@ -59,7 +59,7 @@ Make sure you have the **Java Development Kit (JDK 17 or higher)** installed on 
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/FahimShariar19/JAVA.git](https://github.com/FahimShariar19/JAVA.git)
+   git clone https://github.com/FahimShariar19/JAVA.git
 
 2. **Navigate to the target folder:**
    ```bash
