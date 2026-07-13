@@ -24,46 +24,32 @@ This repository highlights practical implementations of key Java fundamentals:
 
 ---
 
-## 🚀 How to Run the Code
-
-To run any Java file from this repository on your local machine, follow these steps in your terminal or Git Bash:
-
-1. Navigate to the folder containing the Java file:
-   ```bash
-   cd "Java Lab report"
-   ```
-
-2. Compile the Java file (replace `FileName` with your actual `.java` file name):
-   ```bash
-   javac FileName.java
-   ```
-
-3. Run the compiled bytecode (do not include `.java` extension):
-   ```bash
-   java FileName
-   ```
-
-## 🚀 Getting Started
-
-If you wish to clone and test any of the lab codes locally, follow these simple steps:
+## 🚀 Getting Started & How to Run
 
 ### Prerequisites
 Make sure you have the **Java Development Kit (JDK 17 or higher)** installed on your machine.
 
-### Execution
-1. Clone the repository:
+### Execution Steps
+1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/your-username/JAVA.git](https://github.com/FahimShariar19/JAVA.git)
+   git clone https://github.com/FahimShariar19/JAVA.git
+Navigate to the target folder:
 
+Bash
+cd "JAVA/Java Lab report"
+Compile the Java file (replace FileName with your actual .java file name):
 
-   
-  
-  👨‍💻 Author
-  
+Bash
+javac FileName.java
+Run the compiled bytecode:
+
+Bash
+java FileName
+👨‍💻 Author
 Fahim Shariar
 
 Computer & Communication Engineering (CCE) Student
 
 Passionate about Full-Stack Web Development, Java Architecture & Systems Design.
 
-[Fahim Shariar](https://github.com/FahimShariar19)
+Fahim Shariar (https://github.com/your-username)
