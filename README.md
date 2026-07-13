@@ -52,14 +52,22 @@ Make sure you have the **Java Development Kit (JDK 17 or higher)** installed on 
 1. **Clone the repository:**
    ```bash
    git clone [https://github.com/FahimShariar19/JAVA.git](https://github.com/FahimShariar19/JAVA.git)
-Navigate to the target folder:
 
-cd JAVA/Java-Lab-Report
+2. **Navigate to the target folder:**
+   ```bash
+   cd JAVA/Java-Lab-Report
+   ```
 
-javac FileName.java
+3. **Compile the Java file** (replace `FileName` with your actual `.java` file name):
+   ```bash
+   javac FileName.java
+   ```
 
-java FileName
-
+4. **Run the compiled bytecode:**
+   ```bash
+   java FileName
+   ```
+   
 👨‍💻 Author
 
 Fahim Shariar
