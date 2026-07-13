@@ -24,6 +24,25 @@ This repository highlights practical implementations of key Java fundamentals:
 
 ---
 
+## 🚀 How to Run the Code
+
+To run any Java file from this repository on your local machine, follow these steps in your terminal or Git Bash:
+
+1. Navigate to the folder containing the Java file:
+   ```bash
+   cd "Java Lab report"
+   ```
+
+2. Compile the Java file (replace `FileName` with your actual `.java` file name):
+   ```bash
+   javac FileName.java
+   ```
+
+3. Run the compiled bytecode (do not include `.java` extension):
+   ```bash
+   java FileName
+   ```
+
 ## 🚀 Getting Started
 
 If you wish to clone and test any of the lab codes locally, follow these simple steps:
