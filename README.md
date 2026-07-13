@@ -1,4 +1,7 @@
 # ☕ Java Programming & Lab Resources
+![Java](https://img.shields.io/badge/Java-JDK_17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active_Coursework-blue?style=for-the-badge)
 
 Welcome to my Java repository! This space serves as a structured collection of my Java laboratory tasks, academic coursework, and practical implementations of core **Object-Oriented Programming (OOP)** concepts during my Computer & Communication Engineering (CCE) studies.
 
@@ -41,6 +44,11 @@ Below is the list of lab experiments covered in this course:
 - **Exception Handling & I/O:** File operations and robust error handling techniques.
 
 ---
+## 🛠️ Tools & Environment
+* **Language:** Java (JDK 17 or above)
+* **IDE/Editor:** VS Code / IntelliJ IDEA / Eclipse
+* **Version Control:** Git & GitHub
+* **OS:** Windows / Linux / macOS
 
 ## 🚀 Getting Started & How to Run
 
